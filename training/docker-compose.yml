@@ -1,0 +1,28 @@
+services:
+  yolo-training:
+    build: .
+    image: car-vision/training:latest
+    container_name: car-vision-training
+    volumes:
+      - ./datasets:/app/datasets
+      - ./models:/app/models
+      - ./runs:/app/runs
+      - ./scripts:/app/scripts
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - NVIDIA_VISIBLE_DEVICES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    runtime: nvidia
+    shm_size: '8gb'
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    tty: true
+    stdin_open: true

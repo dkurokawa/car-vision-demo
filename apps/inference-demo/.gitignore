@@ -1,0 +1,9 @@
+node_modules
+dist
+.env
+.env.local
+*.tsbuildinfo
+
+# Not tracked; generate locally via training/ and copy it in (see README.md).
+*.onnx
+.vercel

@@ -1,0 +1,42 @@
+[project]
+name = "car-vision"
+version = "0.1.0"
+description = "Data collection and dataset-splitting tooling for the car-vision exterior-angle classifier."
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+data = ["requests>=2.32", "tqdm>=4.66"]
+dev = ["ruff>=0.16", "mypy>=1.10", "pytest>=8.0", "types-requests>=2.32", "types-tqdm>=4.66"]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["training/datasets", "data/raw"]
+
+[tool.ruff.lint]
+extend-select = ["I"]
+# Scripts here are always invoked via `python3 script.py` / `uv run`, never
+# `./script.py`; the shebang is documentation, not an executable contract.
+ignore = ["EXE001"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["data/scripts", "training/scripts"]
+ignore_missing_imports = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+# Test files: still type-checked (check_untyped_defs above), but not
+# required to fully annotate every helper/fixture.
+module = ["test_download_datasets", "test_split_dataset"]
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["data/scripts/tests", "training/scripts/tests"]
+pythonpath = ["data/scripts", "training/scripts"]

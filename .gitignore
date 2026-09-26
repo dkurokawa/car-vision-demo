@@ -1,0 +1,55 @@
+# Models (large binary artifacts). Not tracked, including the demo's
+# public/models/*.onnx -- generate it locally via training/ instead
+# (see README.md).
+*.pt
+*.onnx
+*.pth
+*.h5
+*.pkl
+
+# Datasets (raw/filtered/runs). data/raw/ includes manifest.csv: collected
+# images and their provenance are not published, only the collection
+# tooling that produces them (see README.md's "モデル・データ管理").
+data/raw/
+data/filtered/
+data/processed/
+training/datasets/
+training/runs/
+training/models/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+build/
+.vite/
+.vercel/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Test output
+test-results/
+playwright-report/
+coverage/
+
+# Logs
+*.log
