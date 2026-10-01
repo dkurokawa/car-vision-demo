@@ -22,6 +22,12 @@ ONNX Runtime Web を使ったブラウザデモ.
 
 ---
 
+## 構成図
+
+![architecture](docs/architecture.svg)
+
+公開画像 API から出典付きで画像を集め、手でクラスに振り分けて分割し、手元の GPU（Docker + CUDA）で YOLOv8-cls を学習する。ONNX に書き出して、ブラウザ（onnxruntime-web）で推論する。画像と学習済みモデルはこのリポジトリに含めない。
+
 ## 構成
 
 ```
