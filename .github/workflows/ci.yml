@@ -19,6 +19,7 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: apps/inference-demo/package-lock.json
+          check-latest: true
       - run: npm ci
       - run: npm run lint
       - run: npm test
